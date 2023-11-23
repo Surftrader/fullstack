@@ -1,0 +1,13 @@
+.idea
+backend/.mvn/**
+backend/mvnw
+backend/mvnw.cmd
+backend/target
+backend/*.iml
+
+
+frontend/.angular/**
+frontend/.vscode/**
+frontend/.vscode
+frontend/node_modules/**
+frontend/package-lock.json
