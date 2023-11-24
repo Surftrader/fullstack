@@ -17,7 +17,7 @@ export class AuthContentComponent {
       "/messages",
       null
     ).then(
-      (response) => this.data = response.data
+      (response: any) => this.data = response.data
     );
   }
 }
