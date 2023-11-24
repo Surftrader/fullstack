@@ -8,13 +8,26 @@ import { AxiosService } from "../axios.service";
 })
 export class ContentComponent {
 
-  constructor(private axionService: AxiosService) {}
+  constructor(private axiosService: AxiosService) {}
 
   onLogin(input: any): void {
-    this.axionService.request(
+    this.axiosService.request(
       "POST",
       "/login",
       {
+        login: input.login,
+        password: input.password
+      }
+    );
+  }
+
+  onRegister(input: any) {
+    this.axiosService.request(
+      "POST",
+      "/register",
+      {
+        firstName: input.firstName,
+        lastName: input.lastName,
         login: input.login,
         password: input.password
       }
