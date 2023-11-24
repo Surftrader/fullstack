@@ -1,4 +1,4 @@
-package ua.com.poseal.jwt.backend.dto;
+package ua.com.poseal.jwt.backend.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

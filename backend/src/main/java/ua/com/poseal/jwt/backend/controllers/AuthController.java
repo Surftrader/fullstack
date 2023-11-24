@@ -5,9 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ua.com.poseal.jwt.backend.dto.CredentialDto;
-import ua.com.poseal.jwt.backend.dto.UserDto;
+import ua.com.poseal.jwt.backend.dtos.CredentialDto;
+import ua.com.poseal.jwt.backend.dtos.SignUpDto;
+import ua.com.poseal.jwt.backend.dtos.UserDto;
 import ua.com.poseal.jwt.backend.services.UserService;
+
+import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,5 +21,11 @@ public class AuthController {
     public ResponseEntity<UserDto> login(@RequestBody CredentialDto credentialDto) {
         UserDto user = userService.login(credentialDto);
         return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> register(@RequestBody SignUpDto signUpDto) {
+        UserDto user = userService.register(signUpDto);
+        return ResponseEntity.created(URI.create("/users/" + user.getId())).body(user);
     }
 }

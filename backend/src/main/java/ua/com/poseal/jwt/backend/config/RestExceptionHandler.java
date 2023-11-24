@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ua.com.poseal.jwt.backend.dto.ErrorDto;
+import ua.com.poseal.jwt.backend.dtos.ErrorDto;
 import ua.com.poseal.jwt.backend.exceptions.AppException;
 
 @ControllerAdvice
