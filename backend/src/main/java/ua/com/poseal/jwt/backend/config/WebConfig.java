@@ -1,5 +1,6 @@
 package ua.com.poseal.jwt.backend.config;
 
+import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,7 @@ import java.util.List;
 public class WebConfig {
 
     @Bean
-    public FilterRegistrationBean corsFilter() {
+    public FilterRegistrationBean<Filter> corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
@@ -35,7 +36,7 @@ public class WebConfig {
         ));
         config.setMaxAge(3600L);
         source.registerCorsConfiguration("/**", config);
-        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+        FilterRegistrationBean<Filter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
         bean.setOrder(-102);
         return bean;
     }
