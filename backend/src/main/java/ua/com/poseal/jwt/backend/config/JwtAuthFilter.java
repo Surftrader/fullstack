@@ -15,6 +15,7 @@ import java.io.IOException;
 public class JwtAuthFilter extends OncePerRequestFilter {
     private final UserAuthProvider userAuthProvider;
 
+
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
@@ -26,8 +27,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             String[] authElements = header.split(" ");
             if (authElements.length == 2 && "Bearer".equals(authElements[0])) {
                 try {
-                    SecurityContextHolder.getContext()
-                            .setAuthentication(userAuthProvider.validateToken(authElements[1]));
+                    if ("GET".equals(request.getMethod())) {
+                        SecurityContextHolder.getContext()
+                                .setAuthentication(userAuthProvider.validateToken(authElements[1]));
+                    } else {
+                        SecurityContextHolder.getContext()
+                                .setAuthentication(userAuthProvider.validateTokenStrongly(authElements[1]));
+                    }
                 } catch (RuntimeException e) {
                     SecurityContextHolder.clearContext();
                     throw e;
